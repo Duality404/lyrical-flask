@@ -69,7 +69,7 @@ def generate_lyrics(description, language, genre, keywords, mood, negative_promp
 
 def refine_lyrics(current_lyrics, keywords, mood, negative_prompt):
   try:
-    genai.configure(api_key=API_KEY)
+    genai.configure(api_key=GEMINI_API_KEY)
     model = genai.GenerativeModel(
       model_name="gemini-1.5-flash",
       generation_config=generation_config

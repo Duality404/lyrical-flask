@@ -1,57 +1,162 @@
+# Lyrical Flask 🌐  
 
-<h1 align="center" style="font-weight: bold;">Lyrical ♪ </h1>
+This is the Flask server for the **[Lyrical Application](https://github.com/Duality404/Lyrical)** , handling API requests to process user preferences and generate custom lyrics. The server interacts with the **Gemini API** for lyrics generation and is hosted on **Vercel** for seamless deployment and scalability.  
 
-<p align="center">
-<a href="#tech">Technologies</a>
-<a href="#started">Getting Started</a>
-<a href="#routes">API Endpoints</a>
-<a href="#colab">Collaborators</a>
-<a href="#contribute">Contribute</a> 
-</p>
+---
 
+## Table of Contents  
 
-<p align="center">This repository contains the flask backend code for the web application lyrical</p>
+1. [Features](#features)  
+2. [Modules and Working](#modules-and-working)  
+    * [User Input Processing](#user-input-processing)  
+    * [Lyrics Generation](#lyrics-generation)  
+3. [Installation](#installation)  
+4. [Usage](#usage)  
+5. [Deployment](#deployment)  
+6. [License](#license)  
+7. [Contact](#contact)  
 
+---
 
-<p align="center">
-<a href="https://lyrical-omega.vercel.app/">📱 Visit this Project</a>
-</p>
+## Features  
 
-<h2 id="technologies">💻 Technologies</h2>
+- **API Integration**: Processes user input and communicates with the Gemini API.  
+- **Real-Time Lyrics Generation**: Delivers responses quickly to ensure smooth user experiences.  
+- **Scalable Deployment**: Hosted on Vercel for high availability and reliability.  
+- **Lightweight Design**: Built using Flask for simplicity and efficiency.  
 
-- Python
-- Flask
-- Gemini API
+---
 
-<h3>Cloning</h3>
+## Modules and Working  
 
+### User Input Processing  
 
+- Accepts user inputs like mood, style, and theme via POST requests.  
+- Validates input to ensure proper formatting and completeness.  
 
-```bash
-git clone https://github.com/Duality404/lyrical-flask.git
-```
+### Lyrics Generation  
 
-<h3>Config .env variables</h2>
+- Interacts with the **Gemini API** using the processed user input.  
+- Returns generated lyrics in JSON format for further processing by the **Lyrical** Flutter application.
 
-Create a .env file for storing the gemini api key
+### Lyrics Refinement  
 
-```yaml
-GEMINI_API_KEY={your_api_key}
-```
+- Interacts with the **Gemini API** using the existing lyrics to refine them.  
+- Returns refined lyrics in JSON format for further processing by the **Lyrical** Flutter application.  
 
-<h2 id="routes">📍 API Endpoints</h2>
+---
 
-Here you can list the main routes of your API, and what are their expected request bodies.
-​
-| route               | description                                          
-|----------------------|-----------------------------------------------------
-| <kbd>POST /api/generate_lyrics</kbd>     | sends post request to generate lyrics with appropriate fields
-| <kbd>POST /api/refine_lyrics</kbd>     | sends post request to refine existing lyrics
+## Installation  
 
+1. **Clone the Repository**:  
 
+    ```bash
+    git clone https://github.com/Duality404/lyrical-flask.git
+    cd lyrical-flask
+    ```
 
-<h3>Documentations that might help</h3>
+2. **Set Up Virtual Environment (Optional)**:  
 
-[📝 Gemini API docs](https://ai.google.dev/gemini-api/docs)
+    ```bash
+    python -m venv venv
+    source venv/bin/activate    # On macOS/Linux
+    venv\Scripts\activate       # On Windows
+    ```
 
-[💾 Flask docs](https://flask.palletsprojects.com/en/stable/)
+3. **Install Dependencies**:  
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. **Configure Environment Variables**:  
+
+    Create a `.env` file in the root directory and add the following:  
+
+    ```env
+    GEMINI_API_KEY=your_gemini_api_key
+    ```
+
+    Replace `your_gemini_api_key` with your actual Gemini API key.  
+
+---
+
+## Usage  
+
+1. **Run the Server Locally**:  
+
+    ```bash
+    python geminisong.py
+    ```
+
+2. **Interact with the API**:  
+
+    Use tools like Postman or Curl to send POST requests to the endpoints:
+     
+    - **Generate Lyrics endpoint**:  
+    ```bash
+    curl -X POST http://localhost:5000/api/generate_lyrics \
+     -H "Content-Type: application/x-www-form-urlencoded" \
+     -d "description=A heartfelt song about love" \
+     -d "language=English" \
+     -d "genre=Pop" \
+     -d "keywords=love,romance,emotion" \
+     -d "mood=romantic" \
+     -d "negative_prompt=anger"
+    ```
+
+    **Response**:  
+
+    ```json
+    {
+    "lyrics": [
+        "Version 1: Lyrics generated based on the provided inputs...",
+        "Version 2: Another set of lyrics generated...",
+        "Version 3: Final version of generated lyrics..."
+    ]
+    }
+    ```
+    - **Refine Lyrics endpoint**:  
+    ```bash
+    curl -X POST http://localhost:5000/api/refine_lyrics \
+     -H "Content-Type: application/x-www-form-urlencoded" \
+     -d "current_lyrics=This is the original draft of the song lyrics" \
+     -d "keywords=love,hope,joy" \
+     -d "mood=happy" \
+     -d "negative_prompt=sadness"
+    ```
+
+    **Response**:  
+
+    ```json
+    {
+    "refined_lyrics": "Refined version of the lyrics based on the updated inputs."
+    }
+
+    ```
+
+---
+
+## Deployment  
+
+The server is deployed on **Vercel** for scalability and ease of access.  
+
+### Steps to Deploy on Vercel:  
+
+1. Install the Vercel CLI:  
+
+    ```bash
+    npm install -g vercel
+    ```
+
+2. Log in to Vercel:  
+
+    ```bash
+    vercel login
+    ```
+
+3. Deploy the Project:  
+
+    ```bash
+    vercel
+    ```

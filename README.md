@@ -9,12 +9,11 @@ This is the Flask server for the **[Lyrical Application](https://github.com/Dual
 1. [Features](#features)  
 2. [Modules and Working](#modules-and-working)  
     * [User Input Processing](#user-input-processing)  
-    * [Lyrics Generation](#lyrics-generation)  
+    * [Lyrics Generation](#lyrics-generation)
+    * [Lyrics Refinement](#lyrics-refinement)  
 3. [Installation](#installation)  
 4. [Usage](#usage)  
 5. [Deployment](#deployment)  
-6. [License](#license)  
-7. [Contact](#contact)  
 
 ---
 
@@ -105,7 +104,7 @@ This is the Flask server for the **[Lyrical Application](https://github.com/Dual
      -d "negative_prompt=anger"
     ```
 
-    **Response**:  
+   **Sample Response**:  
 
     ```json
     {
@@ -126,7 +125,7 @@ This is the Flask server for the **[Lyrical Application](https://github.com/Dual
      -d "negative_prompt=sadness"
     ```
 
-    **Response**:  
+    **Sample Response**:  
 
     ```json
     {
